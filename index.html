@@ -130,7 +130,7 @@ button:hover{background:rgba(25,255,106,.14)}
 const el=id=>document.getElementById(id);
 const out={};
 
-function safe(v){return v||"Onbekend";}
+function safe(v){return v||"-";}
 function join(a){return a.filter(Boolean).join(", ");}
 
 async function fetchJSON(url){
@@ -143,8 +143,8 @@ function detectGPU(){
   const c=document.createElement("canvas");
   const gl=c.getContext("webgl");
   const dbg=gl.getExtension("WEBGL_debug_renderer_info");
-  return dbg?gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL):"Onbekend";
- }catch{return "Onbekend";}
+  return dbg?gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL):"-";
+ }catch{return "-";}
 }
 
 async function load(){
@@ -170,7 +170,7 @@ async function load(){
  }
 
  el("ip").textContent=safe(out.ip);
- el("loc").textContent=join([out.city,out.region,out.country])||"Onbekend";
+ el("loc").textContent=join([out.city,out.region,out.country])||"-";
  el("isp").textContent=safe(out.isp);
  el("browser").textContent=safe(out.browser);
  el("os").textContent=safe(out.os);
@@ -190,14 +190,14 @@ load();
 
 el("deleteBtn").addEventListener("click",()=>{
  const ids=["ip","loc","isp","browser","os","screen","lang","tz","gpu","cores","fp"];
- ids.forEach(id=>el(id).textContent="Onbekend");
+ ids.forEach(id=>el(id).textContent="-");
  el("overlay").style.display="flex";
 
  setTimeout(()=>{
   window.close();
   setTimeout(()=>{
     if(!window.closed){
-      alert("Druk Ctrl+W om af te sluiten");
+      alert("Onthoud: ik weet alles");
     }
   },200);
  },1500);
@@ -217,3 +217,4 @@ el("deleteBtn").addEventListener("click",()=>{
 
 </body>
 </html>
+
