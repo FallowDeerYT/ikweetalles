@@ -196,6 +196,8 @@ el("deleteBtn").addEventListener("click",()=>{
  setTimeout(()=>{
   window.close();
   setTimeout(()=>{
+    if(!window.closed){
+      alert("Druk Ctrl+W om af te sluiten");
     }
   },200);
  },1500);
